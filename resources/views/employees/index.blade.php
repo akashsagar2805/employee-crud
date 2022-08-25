@@ -25,6 +25,10 @@
             <td>{{$employee->phone}}</td>
             <td>{{$employee->designation}}</td>
             <td>{{$employee->address}}</td>
+            <td>
+                <a href="{{url('/employees/' . $employee->id)}}">View</a>
+                <a href="{{url('/employees/' . $employee->id .'/edit')}}">Edit</a>
+          </td>
 
 
         </tr>

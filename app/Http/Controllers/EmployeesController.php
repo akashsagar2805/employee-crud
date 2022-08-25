@@ -60,7 +60,7 @@ class EmployeesController extends Controller
 
         $employee->save();
 
-        return redirect('employees');
+        return redirect('/employees');
     }
 
     /**
@@ -71,7 +71,9 @@ class EmployeesController extends Controller
      */
     public function show($id)
     {
-        //
+        $employee = Employee::find($id);
+
+        return view('employees.show', compact('employee'));
     }
 
     /**
@@ -82,7 +84,9 @@ class EmployeesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee = Employee::find($id);
+
+        return view('employees.edit', compact('employee'));
     }
 
     /**
@@ -94,7 +98,31 @@ class EmployeesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'designation' => 'required',
+            'salary' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'address' => 'required'
+        ]);
+
+        $employee = Employee::find($id);
+
+        $employee->name = $request->name;
+        $employee->email = $request->email;
+        $employee->phone = $request->phone;
+        $employee->designation = $request->designation;
+        $employee->salary = $request->salary;
+        $employee->city = $request->city;
+        $employee->state = $request->state;
+        $employee->address = $request->address;
+
+        $employee->save();
+
+        return redirect('/employees');
     }
 
     /**
