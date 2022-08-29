@@ -66,12 +66,12 @@ class EmployeesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  App\Models\Employee $employee
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Employee $employee)
     {
-        $employee = Employee::find($id);
+       // $employee = Employee::find();
 
         return view('employees.show', compact('employee'));
     }
@@ -79,12 +79,12 @@ class EmployeesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  App\Models\Employee $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Employee $employee)
     {
-        $employee = Employee::find($id);
+        //$employee = Employee::find($id);
 
         return view('employees.edit', compact('employee'));
     }
@@ -93,10 +93,10 @@ class EmployeesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  App\Models\Employee $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Employee $employee)
     {
         $request->validate([
             'name' => 'required',
@@ -109,7 +109,7 @@ class EmployeesController extends Controller
             'address' => 'required'
         ]);
 
-        $employee = Employee::find($id);
+        //$employee = Employee::find($id);
 
         $employee->name = $request->name;
         $employee->email = $request->email;
@@ -128,11 +128,15 @@ class EmployeesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  App\Models\Employee $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Employee $employee)
     {
-        //
+       // $employee = Employee::find($id);
+
+        $employee->delete();
+
+        return redirect('/employees');
     }
 }

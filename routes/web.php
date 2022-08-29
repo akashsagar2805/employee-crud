@@ -18,9 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('employee/create', [EmployeesController::class, 'create']);
-Route::get('employees', [EmployeesController::class, 'index']);
-Route::post('employees', [EmployeesController::class, 'store']);
-Route::get('employees/{id}', [EmployeesController::class, 'show']);
-Route::get('employees/{id}/edit', [EmployeesController::class, 'edit']);
-Route::put('employees/{id}', [EmployeesController::class, 'update']);
+// Route::get('employees/create', [EmployeesController::class, 'create']);
+// Route::get('employees', [EmployeesController::class, 'index']);
+// Route::post('employees', [EmployeesController::class, 'store']);
+// Route::get('employees/{id}', [EmployeesController::class, 'show']);
+// Route::get('employees/{id}/edit', [EmployeesController::class, 'edit']);
+// Route::put('employees/{id}', [EmployeesController::class, 'update']);
+// Route::delete('employees/{id}', [EmployeesController::class, 'destroy']);
+
+Route::resource('employees', EmployeesController::class);

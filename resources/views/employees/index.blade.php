@@ -7,7 +7,7 @@
     <title>Employees</title>
 </head>
 <body>
-    <h1>Employees List <a href="/employee/create">Add Employee</a></h1>
+    <h1>Employees List <a href="/employees/create">Add Employee</a></h1>
     <table border="1">
         <tr>
            <th>Name</th>
@@ -28,6 +28,11 @@
             <td>
                 <a href="{{url('/employees/' . $employee->id)}}">View</a>
                 <a href="{{url('/employees/' . $employee->id .'/edit')}}">Edit</a>
+                <form action="{{url('/employees/' . $employee->id)}}" method="post" style="display: inline" onclick="return confirm('Are you sure you want to delete this item?');">
+                @csrf
+                @method('delete')
+                <button type="submit">Delete</button>
+                </form>
           </td>
 
 
