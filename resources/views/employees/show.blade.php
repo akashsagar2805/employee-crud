@@ -18,6 +18,10 @@
             <td>{{$employee->email}}</td>
         </tr>
         <tr>
+            <th>Manager</th>
+            <td>{{$manager->name}}</td>
+        </tr>
+        <tr>
             <th>Phone</th>
             <td>{{$employee->phone}}</td>
         </tr>

@@ -26,6 +26,18 @@
             <div style=color:red>{{ $message }}</div>
         @enderror
         <br><br>
+        <label for="manager">Employee Manager :</label>
+        <select name="manager">
+            <option value="">Select Manager</option>
+            @foreach ($managers as $manager)
+            <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+            @endforeach
+         </select>
+        @error('manager')
+            <div style=color:red>{{ $message }}</div>
+        @enderror
+        <br>
+        <br>
 
         <label>Employee Phone :</label>
         <input type="text" placeholder="Enter Phone" name="phone">

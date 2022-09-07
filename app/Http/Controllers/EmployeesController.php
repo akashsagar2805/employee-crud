@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Manager;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class EmployeesController extends Controller
      */
     public function create()
     {
-        return view('employees.create');
+        $managers = Manager::all();
+        return view('employees.create', compact('managers'));
     }
 
     /**
@@ -39,6 +41,7 @@ class EmployeesController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
+            'manager'=>'required',
             'phone' => 'required',
             'designation' => 'required',
             'salary' => 'required',
@@ -51,6 +54,7 @@ class EmployeesController extends Controller
         $employee = new Employee();
         $employee->name = $request->name;
         $employee->email = $request->email;
+        $employee->manager_id = $request->manager;
         $employee->phone = $request->phone;
         $employee->designation = $request->designation;
         $employee->salary = $request->salary;
@@ -72,8 +76,8 @@ class EmployeesController extends Controller
     public function show(Employee $employee)
     {
        // $employee = Employee::find();
-
-        return view('employees.show', compact('employee'));
+        $manager = Manager::find($employee->manager_id);
+        return view('employees.show', compact('employee','manager'));
     }
 
     /**
@@ -85,8 +89,8 @@ class EmployeesController extends Controller
     public function edit(Employee $employee)
     {
         //$employee = Employee::find($id);
-
-        return view('employees.edit', compact('employee'));
+        $managers = Manager::all();
+        return view('employees.edit', compact('employee','managers'));
     }
 
     /**

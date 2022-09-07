@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\EmployeesController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ManagersController;
+use App\Http\Controllers\EmployeesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,5 @@ Route::get('/', function () {
 // Route::delete('employees/{id}', [EmployeesController::class, 'destroy']);
 
 Route::resource('employees', EmployeesController::class);
+Route::resource('managers', ManagersController::class);
+
